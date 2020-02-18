@@ -3,7 +3,6 @@
 *  Updated by zeddotes@gmail.com, 2019-11-04T21:45:54.595Z
  */
 function (user, context, callback) {
-  console.log("META?", context.connectionMetadata)
   var _ = require('lodash');
   var EXTENSION_URL = "https://dev-5n5e1fnc.eu8.webtask.io/adf6e2f2b84784b57522e3b19dfc9201";
 
