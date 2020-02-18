@@ -70,7 +70,8 @@ function (user, context, callback) {
       p: mergeRecords(user.permissions, permissions)
     };
 
-    user.app_metadata.space = context.connectionId;
+		// user.app_metadata.space = context.connectionId;
+		user.app_metadata.space = context.connectionMetadata.space
 
     auth0.users.updateAppMetadata(user.user_id, user.app_metadata)
       .then(function () {

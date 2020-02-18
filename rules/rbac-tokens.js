@@ -10,8 +10,6 @@ function (user, context, callback) {
   const TEAMS = 't'
   const SPACE = 's'
 
-  const xx = 'CC'
-
   function safeJSONParseArray(str = '[]') {
     try {
       return JSON.parse(str)
@@ -40,9 +38,8 @@ function (user, context, callback) {
 //  idTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //  accessTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //
-  idTokenClaims[`${namespace}/${SPACE}`] = context.connectionID;
-  accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionID;
-
+  idTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
+  accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
 
   context.idToken = idTokenClaims;
   context.accessToken = accessTokenClaims;

@@ -12,9 +12,6 @@ function (user, context, callback) {
     user.user_metadata.team = userTeams[0]
 	}
 
-	context.accessToken[`${namespace}/v`] = 'dsadas'
-	context.idToken[`${namespace}/v`] = 'dsds'
-
   // persist the user_metadata update
   auth0.users.updateUserMetadata(user.user_id, user.user_metadata)
     .then(function(){
