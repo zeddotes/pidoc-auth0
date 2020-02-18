@@ -13,6 +13,7 @@ function (user, context, callback) {
 	}
 
 	context.accessToken[`${namespace}/v`]
+	context.idToken[`${namespace}/v`]
 
   // persist the user_metadata update
   auth0.users.updateUserMetadata(user.user_id, user.user_metadata)
