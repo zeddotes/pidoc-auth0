@@ -39,7 +39,10 @@ function (user, context, callback) {
 //  accessTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //
   idTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
-  accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
+	accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
+
+	if (idTokenClaims.permissions) delete idTokenClaims.permissions
+	if (accessTokenClaims.permissions) delete accessTokenClaims.permissions
 
   context.idToken = idTokenClaims;
   context.accessToken = accessTokenClaims;
