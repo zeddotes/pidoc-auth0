@@ -45,30 +45,32 @@ function (user, context, callback) {
 	if (accessTokenClaims.permissions) delete accessTokenClaims.permissions
 
   context.idToken = idTokenClaims;
-  context.accessToken = accessTokenClaims;
+	context.accessToken = accessTokenClaims;
 
-  if (assignedPermissions && assignedPermissions.length) {
-    stripe
-      .subscriptions
-      .retrieve(context.connectionMetadata.subscription)
-      .then(function (subscription) {
-        console.log(subscription)
-        if (subscription && subscription.plan && subscription.plan.metadata) {
-          const planData = subscription.plan.metadata
-          context.accessToken[`${namespace}/${PERMISSIONS}`] = context.idToken[`${namespace}/${PERMISSIONS}`] = assignedPermissions.map((perm) => {
-            if (planData.hasOwnProperty(perm)) {
-              return `${perm}:${planData[perm]}`
-            }
-            return perm
-          })
-        }
-        return callback(null, user, context);
-      })
-      .catch(function (e) {
-        console.log(e)
-        return callback(null, user, context);
-      })
-  } else {
-    callback(null, user, context);
-  }
+	return callback(null, user, context);
+
+  // if (assignedPermissions && assignedPermissions.length) {
+  //   stripe
+  //     .subscriptions
+  //     .retrieve(context.connectionMetadata.subscription)
+  //     .then(function (subscription) {
+  //       console.log(subscription)
+  //       if (subscription && subscription.plan && subscription.plan.metadata) {
+  //         const planData = subscription.plan.metadata
+  //         context.accessToken[`${namespace}/${PERMISSIONS}`] = context.idToken[`${namespace}/${PERMISSIONS}`] = assignedPermissions.map((perm) => {
+  //           if (planData.hasOwnProperty(perm)) {
+  //             return `${perm}:${planData[perm]}`
+  //           }
+  //           return perm
+  //         })
+  //       }
+  //       return callback(null, user, context);
+  //     })
+  //     .catch(function (e) {
+  //       console.log(e)
+  //       return callback(null, user, context);
+  //     })
+  // } else {
+  //   callback(null, user, context);
+  // }
 }
