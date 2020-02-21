@@ -1,5 +1,4 @@
 function (user, context, callback) {
-  const stripe = require('stripe@7.4.0')('sk_test_sfP5BelBEPXhPOzVh2n02w3V');
   const namespace = 'https://pidoc';
   const assignedRoles = (user.authorization || {}).r;
   const assignedPermissions = (user.authorization || {}).p;
