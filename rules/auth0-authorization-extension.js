@@ -52,7 +52,7 @@ function (user, context, callback) {
     console.log(configuration.PIDOC_FE_CLIENT_ID)
     request.post({
       // this should be configured to a frontend app (pidoc-fe)
-      url: EXTENSION_URL + "/api/users/" + user.user_id + "/policy/" + context.clientID,
+      url: EXTENSION_URL + "/api/users/" + user.user_id + "/policy/" + configuration.PIDOC_FE_CLIENT_ID,
       headers: {
         "x-api-key": configuration.AUTHZ_EXT_API_KEY
       },
