@@ -48,7 +48,10 @@ function (user, context, callback) {
 
   // Get the policy for the user.
   function getPolicy(user, context, cb) {
+    console.log("DSASADS<ALLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+    console.log(configuration.AUTHZ_EXT_CLIENT_ID)
     request.post({
+      // this should be configured to a frontend app (pidoc-fe)
       url: EXTENSION_URL + "/api/users/" + user.user_id + "/policy/" + context.clientID,
       headers: {
         "x-api-key": configuration.AUTHZ_EXT_API_KEY
