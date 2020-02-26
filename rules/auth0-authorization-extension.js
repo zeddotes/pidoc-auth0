@@ -49,6 +49,7 @@ function (user, context, callback) {
   // Get the policy for the user.
   function getPolicy(user, context, cb) {
     console.log("DSASADS<ALLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+    console.log(context.clientID)
     console.log(configuration.PIDOC_FE_CLIENT_ID)
     request.post({
       // this should be configured to a frontend app (pidoc-fe)
