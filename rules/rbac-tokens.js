@@ -1,9 +1,9 @@
 function (user, context, callback) {
 	console.log("RBAC TOKENNNN TYME", user, user.authorization)
   const namespace = 'https://pidoc';
-  const assignedRoles = (user.authorization || {}).r;
-  const assignedPermissions = (user.authorization || {}).p;
-  const assignedGroups = (user.authorization || {}).t;
+  const assignedRoles = user.roles || [];
+  const assignedPermissions = user.permissions || [];
+  const assignedGroups = user.groups || [];
 
   const ROLES = 'r';
   const PERMISSIONS = 'p'
