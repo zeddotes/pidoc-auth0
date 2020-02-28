@@ -1,7 +1,8 @@
 function (user, context, callback) {
   var _ = require('lodash');
   var EXTENSION_URL = "https://dev-5n5e1fnc.eu8.webtask.io/adf6e2f2b84784b57522e3b19dfc9201";
-
+console.log("VI!!!!!!!!!")
+console.log(context)
   var audience = '';
   audience = audience || (context.request && context.request.query && context.request.query.audience);
   if (audience === 'urn:auth0-authz-api') {
@@ -33,7 +34,8 @@ function (user, context, callback) {
 
     // Store this in the user profile (app_metadata).
     saveToMetadata(user, data.groups, data.roles, data.permissions, function (err) {
-      return callback(err, user, context);
+			console.log("EXIT CONTEXt", context)
+			return callback(err, user, context);
     });
   });
 

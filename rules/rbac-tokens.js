@@ -40,11 +40,15 @@ function (user, context, callback) {
   idTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
 	accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
 
-	if (idTokenClaims.permissions) delete idTokenClaims.permissions
-	if (accessTokenClaims.permissions) delete accessTokenClaims.permissions
+	// if (idTokenClaims.permissions) delete idTokenClaims.permissions
+	// if (accessTokenClaims.permissions) delete accessTokenClaims.permissions
 
   context.idToken = idTokenClaims;
 	context.accessToken = accessTokenClaims;
+
+	console.log("SSSSSSLDDDDDDDPerm", assignedPermissions)
+	console.log("SSSSSSLDDDDDDDRoles", assignedRoles)
+	console.log("SSSSSSLDDDDDDDTeams?", assignedGroups)
 
 	return callback(null, user, context);
 
