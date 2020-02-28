@@ -40,9 +40,9 @@ console.log(user)
 
 
     // Store this in the user profile (app_metadata).
-    saveToMetadata(user, data.groups, data.roles, data.permissions, function (err) {
+    saveToMetadata(user, data.groups, data.roles, data.permissions, function (err, updatedUser, updatedContext) {
 			console.log("EXIT CONTEXt", context)
-			return callback(err, user, context);
+			return callback(err, updatedUser, updatedContext);
     });
   });
 
