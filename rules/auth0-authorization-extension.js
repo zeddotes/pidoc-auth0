@@ -25,12 +25,19 @@ console.log(context)
       return callback(
         new UnauthorizedError('Authorization Extension: ' + ((res.body && (res.body.message || res.body) || res.statusCode)))
       );
-    }
+		}
+
+		console.log("GOT POLICY", res, data)
+
+		console.log("BEFORE USER", user)
 
     // Update the user object.
     user.groups = mergeRecords(user.groups, data.groups);
     user.roles = mergeRecords(user.roles, data.roles);
-    user.permissions = mergeRecords(user.permissions, data.permissions);
+		user.permissions = mergeRecords(user.permissions, data.permissions);
+
+		console.log("NOW USER", user)
+
 
     // Store this in the user profile (app_metadata).
     saveToMetadata(user, data.groups, data.roles, data.permissions, function (err) {
@@ -69,6 +76,7 @@ console.log(context)
 
   // Store authorization data in the user profile so we can query it later.
   function saveToMetadata(user, groups, roles, permissions, cb) {
+		console.log("SAVING META", "MERGING", user.app_metadata, groups, roles, permissions)
     user.app_metadata = user.app_metadata || {};
     user.app_metadata.authorization = {
       t: mergeRecords(user.groups, groups),
@@ -76,6 +84,7 @@ console.log(context)
       p: mergeRecords(user.permissions, permissions)
     };
 
+		console.log("MERGED", user.app_metadata)
 		// user.app_metadata.space = context.connectionId;
 		user.app_metadata.space = context.connectionMetadata.space
 
