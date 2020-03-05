@@ -1,39 +1,39 @@
 function (user, context, callback) {
 	console.log("RBAC TOKENNNN TYME", user, user.authorization)
   const namespace = 'https://pidoc';
-  const assignedRoles = user.roles || [];
-  const assignedPermissions = user.permissions || [];
-  const assignedGroups = user.groups || [];
+  // const assignedRoles = user.roles || [];
+  // const assignedPermissions = user.permissions || [];
+  // const assignedGroups = user.groups || [];
 
-  const ROLES = 'r';
-  const PERMISSIONS = 'p'
-  const TEAMS = 't'
+  // const ROLES = 'r';
+  // const PERMISSIONS = 'p'
+  // const TEAMS = 't'
   const SPACE = 's'
 
-  function safeJSONParseArray(str = '[]') {
-    try {
-      return JSON.parse(str)
-    } catch (e) {
-      return []
-    }
-  }
+  // function safeJSONParseArray(str = '[]') {
+  //   try {
+  //     return JSON.parse(str)
+  //   } catch (e) {
+  //     return []
+  //   }
+  // }
 
   let idTokenClaims = context.idToken || {};
   let accessTokenClaims = context.accessToken || {};
 
-  idTokenClaims[`${namespace}/${ROLES}`] = assignedRoles;
-  accessTokenClaims[`${namespace}/${ROLES}`] = assignedRoles;
+  // idTokenClaims[`${namespace}/${ROLES}`] = assignedRoles;
+  // accessTokenClaims[`${namespace}/${ROLES}`] = assignedRoles;
 
-  idTokenClaims[`${namespace}/${PERMISSIONS}`] = assignedPermissions;
-  accessTokenClaims[`${namespace}/${PERMISSIONS}`] = assignedPermissions;
+  // idTokenClaims[`${namespace}/${PERMISSIONS}`] = assignedPermissions;
+  // accessTokenClaims[`${namespace}/${PERMISSIONS}`] = assignedPermissions;
 
-  if (assignedPermissions && assignedPermissions.length && assignedPermissions.indexOf('ta') > -1) {
-      idTokenClaims[`${namespace}/${TEAMS}`] = safeJSONParseArray(context.connectionMetadata.teams);
-		  accessTokenClaims[`${namespace}/${TEAMS}`] = safeJSONParseArray(context.connectionMetadata.teams);
-  } else {
-      idTokenClaims[`${namespace}/${TEAMS}`] = assignedGroups;
-		  accessTokenClaims[`${namespace}/${TEAMS}`] = assignedGroups;
-  }
+  // if (assignedPermissions && assignedPermissions.length && assignedPermissions.indexOf('ta') > -1) {
+  //     idTokenClaims[`${namespace}/${TEAMS}`] = safeJSONParseArray(context.connectionMetadata.teams);
+	// 	  accessTokenClaims[`${namespace}/${TEAMS}`] = safeJSONParseArray(context.connectionMetadata.teams);
+  // } else {
+  //     idTokenClaims[`${namespace}/${TEAMS}`] = assignedGroups;
+	// 	  accessTokenClaims[`${namespace}/${TEAMS}`] = assignedGroups;
+  // }
 
 //  idTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //  accessTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
@@ -47,9 +47,9 @@ function (user, context, callback) {
   context.idToken = idTokenClaims;
 	context.accessToken = accessTokenClaims;
 
-	console.log("SSSSSSLDDDDDDDPerm", assignedPermissions)
-	console.log("SSSSSSLDDDDDDDRoles", assignedRoles)
-	console.log("SSSSSSLDDDDDDDTeams?", assignedGroups)
+	// console.log("SSSSSSLDDDDDDDPerm", assignedPermissions)
+	// console.log("SSSSSSLDDDDDDDRoles", assignedRoles)
+	// console.log("SSSSSSLDDDDDDDTeams?", assignedGroups)
 
 	return callback(null, user, context);
 
