@@ -1,5 +1,5 @@
 function (user, context, callback) {
-	console.log("RBAC TOKENNNN TYME", user, user.authorization)
+	console.log("RBAC TOKEN TIME", user)
   const namespace = 'https://pidoc';
   // const assignedRoles = user.roles || [];
   // const assignedPermissions = user.permissions || [];
@@ -9,6 +9,7 @@ function (user, context, callback) {
   // const PERMISSIONS = 'p'
   // const TEAMS = 't'
   const SPACE = 's'
+  const CONNECTION = 'c'
 
   // function safeJSONParseArray(str = '[]') {
   //   try {
@@ -38,8 +39,8 @@ function (user, context, callback) {
 //  idTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //  accessTokenClaims[`${namespace}/${SPACE}`] = user.space || "";
 //
-  idTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
-	accessTokenClaims[`${namespace}/${SPACE}`] = context.connectionMetadata.space;
+  idTokenClaims[`${namespace}/${CONNECTION}`] = context.connection;
+	accessTokenClaims[`${namespace}/${CONNECTION}`] = context.connection;
 
 	// if (idTokenClaims.permissions) delete idTokenClaims.permissions
 	// if (accessTokenClaims.permissions) delete accessTokenClaims.permissions
